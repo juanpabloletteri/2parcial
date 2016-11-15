@@ -144,14 +144,83 @@ function EditarUsuario(obj) {//#sin case
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     });
 }
-function ModificarUsuario() {//#3a
+function ModificarUsuario(id) {//#3a
 
     if (!confirm("Modificar USUARIO?")) {
         return;
     }
-//implementar...
+
+    var pagina = "./administracion.php";
+
+    var nombre = $("#txtNombre").val();
+    var email = $("#txtEmail").val();
+    var pass = $("#txtPassword").val();
+    var perfil = $("#cboPerfiles").val();
+
+
+    $.ajax({
+        type: 'POST',
+        url: pagina,
+        //dataType: "json",
+        data: {
+            queMuestro: "MODIFICAR_USUARIO",
+            nombre: nombre,
+            email:email,
+            pass:pass,
+            perfil:perfil,
+            id:id
+        },
+        async: true
+    })
+    .done(function (objJson) {
+
+        /*if (!objJson.Exito) {
+            alert(objJson.Mensaje);
+            return;
+        }
+
+        alert(objJson.Mensaje);
+
+        $("#divAbm").html("");*/
+        MostrarGrilla();
+
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+    });
 
 }
+
+function MostrarUsuario(id) {//#3a
+
+    if (!confirm("Modificar USUARIO?")) {
+        return;
+    }
+
+    var pagina = "./administracion.php";
+
+    $.ajax({
+        type: 'POST',
+        url: pagina,
+        //dataType: "json",
+        data: {
+            queMuestro: "TRAER_USUARIO",
+            id: id,
+        },
+        async: true
+    })
+    .done(function (usuario) {
+
+        $("#divAbm").html(usuario);
+        $('#cboPerfiles > option[value="usuario"]').attr('selected', 'selected');
+
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+    });
+
+}
+
 function EliminarUsuario(id) {//#3b
 
     if (!confirm("Eliminar USUARIO?")) {

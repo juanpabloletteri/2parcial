@@ -20,7 +20,7 @@ if (!isset($usuario)) {//alta
         $botonTitulo = $usuario->accion;
     }
     else {
-        $botonClick = "ModificarUsuario()";    
+        $botonClick = "ModificarUsuario($usuario->id)";    
         $botonTitulo = "Editar Perfil";        
     }
 }

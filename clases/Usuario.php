@@ -47,7 +47,7 @@ class Usuario {
     public static function TraerUnUsuarioPorId($id) {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
         
-        $sql = "SELECT U.id, U.nombre, U.email, U.perfil, U.foto
+        $sql = "SELECT U.id, U.nombre, U.email, U.perfil
                 FROM usuarios U 
                 WHERE U.id = :id ";
         
@@ -92,7 +92,7 @@ class Usuario {
         
         $sql = "UPDATE usuarios 
                 SET nombre = :nombre, email = :email, password = :pass, 
-                perfil = :perfil, foto = :foto 
+                perfil = :perfil
                 WHERE id=:id";
         
         $consulta = $objetoAccesoDato->RetornarConsulta($sql);
@@ -101,7 +101,7 @@ class Usuario {
         $consulta->bindValue(':email', $obj->email, PDO::PARAM_STR);
         $consulta->bindValue(':pass', $obj->pass, PDO::PARAM_STR);
         $consulta->bindValue(':perfil', $obj->perfil, PDO::PARAM_STR);
-        $consulta->bindValue(':foto', $obj->foto, PDO::PARAM_STR);
+        //$consulta->bindValue(':foto', $obj->foto, PDO::PARAM_STR);
         $consulta->execute();
         
         return $consulta->rowCount();
