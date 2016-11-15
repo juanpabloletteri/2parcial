@@ -110,7 +110,7 @@ class Usuario {
     public static function TraerTodosLosUsuarios() {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-        $sql = "SELECT U.id, U.nombre, U.email, U.perfil, U.foto
+        $sql = "SELECT U.id, U.nombre, U.email, U.perfil
                 FROM usuarios U";
 
         $consulta = $objetoAccesoDato->RetornarConsulta($sql);
