@@ -116,27 +116,27 @@ function ModificarUsuario() {//#3a
 //implementar...
 
 }
-function EliminarUsuario() {//#3b
+function EliminarUsuario(id) {//#3b
 
     if (!confirm("Eliminar USUARIO?")) {
         return;
     }
 
     var pagina = "./administracion.php";
-
+/*
     var id = $("#hdnIdUsuario").val();
     var foto = $("#hdnFotoSubir").val();
 
     var usuario = {};
-    usuario.id = id;
+    usuario.id = id;*/
 
     $.ajax({
         type: 'POST',
         url: pagina,
-        dataType: "json",
+        //dataType: "json",
         data: {
             queMuestro: "ELIMINAR_USUARIO",
-            usuario: usuario
+            id: id
         },
         async: true
     })
