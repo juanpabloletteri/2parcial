@@ -82,7 +82,43 @@ function CargarFormUsuario() {
 }
 function AgregarUsuario() {
 
-//implementar...
+    var pagina = "./administracion.php";
+
+    var nombre = $("#txtNombre").val();
+    var email = $("#txtEmail").val();
+    var pass = $("#txtPassword").val();
+    var perfil = $("#cboPerfiles").val();
+
+
+    $.ajax({
+        type: 'POST',
+        url: pagina,
+        //dataType: "json",
+        data: {
+            queMuestro: "ALTA_USUARIO",
+            nombre: nombre,
+            email:email,
+            pass:pass,
+            perfil:perfil
+        },
+        async: true
+    })
+    .done(function (objJson) {
+
+        /*if (!objJson.Exito) {
+            alert(objJson.Mensaje);
+            return;
+        }
+
+        alert(objJson.Mensaje);
+
+        $("#divAbm").html("");*/
+        MostrarGrilla();
+
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+    });
 
 }
 function EditarUsuario(obj) {//#sin case
